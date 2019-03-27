@@ -20,9 +20,9 @@ describe SayHelloToMyLittleFriend do
      message_double = double :message, to: "friend@example.com", body: "HELLO!"
      message_class_double = double :message_class, new: message_double
      client_double = double :emailclient, new: message_class_double
-     hello = SayHelloToMyLittleFriend.new(client_double)
      allow(client_double).to receive(:message).and_return(message_class_double)
      allow(message_class_double).to receive(:send).and_return("#{message_double.to}, #{message_double.body}")
+     hello = SayHelloToMyLittleFriend.new(client_double)
      hello.run
      expect(message_class_double.send).to eq "friend@example.com, HELLO!"
    end
