@@ -12,5 +12,12 @@ describe Note do
 end
 
 describe NoteFormatter do
-
+  describe '#format' do
+    it 'formats notes' do
+      note_double = double :note
+      allow(note_double).to receive(:title).and_return("Test Title")
+      allow(note_double).to receive(:body).and_return("Test Body")
+      expect(subject.format(note_double)).to eq "Title: Test Title\nTest Body"
+    end
+  end
 end
